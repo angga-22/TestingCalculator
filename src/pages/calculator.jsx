@@ -12,13 +12,11 @@ const Calculator = () => {
   const [result, setResult] = React.useState();
 
   const errorMessage = () => {
-    if (!(check1 ^ check2 ? check3 : check1)) {
-      return (
-        <>
-          <p>At least check two of the input value</p>
-        </>
-      );
-    }
+    return (
+      <>
+        <p className="text-danger">At least check two of the input value</p>
+      </>
+    );
   };
 
   function calculateType(type) {
@@ -51,7 +49,7 @@ const Calculator = () => {
         return "#Value!";
       }
     } else {
-      return "";
+      return setResult(errorMessage());
     }
   }
 
@@ -106,7 +104,6 @@ const Calculator = () => {
           handleChange={handleCheck3}
         />
       </div>
-      <p>{errorMessage()}</p>
       <div className="button-operation mt-32">
         <Button name="add" handleClick={() => calculateType("add")} />
         <Button name="minus" handleClick={() => calculateType("minus")} />
@@ -114,7 +111,8 @@ const Calculator = () => {
         <Button name="divide" handleClick={() => calculateType("divide")} />
       </div>
       <div className="result">
-        <h1>Result: {result}</h1>
+        <h1>Result</h1>
+        <p>{result}</p>
       </div>
     </div>
   );
